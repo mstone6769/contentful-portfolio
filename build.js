@@ -22,10 +22,6 @@ Metalsmith(__dirname)
     partials: 'src/partials',
     directory: 'src/layouts'
   }))
-  .use(assets({
-    source: 'src/assets/',
-    destination: 'assets/'
-  }))
   .use(sass({
     outputStyle: 'compressed'
   }))
