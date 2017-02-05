@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{{ title }}</title>
+    <meta name="description" content="{{ description }}">
+    <meta name="author" content="Contentful">
+  </head>
+  <body>
+    <main>
+      {{{contents}}}
+      <ul>
+        {{#each data.entries}}
+        <li><a href="{{ _fileName }}">{{ fields.name }}</a></li>
+        {{/each}}
+      </ul>
+    </main>
+  </body>
+</html>

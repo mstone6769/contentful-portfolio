@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{{ data.fields.name }}</title>
+    <meta name="description" content="{{ description }}">
+    <meta name="author" content="Contentful">
+  </head>
+  <body>
+    <main>
+      <h1>{{ data.fields.name }}</h1>
+      <ul>
+        {{#each data.fields.images}}
+          <li>
+            <img
+              alt="{{ fields.title }}"
+              src="https:{{fields.file.url}}">
+          </li>
+        {{/each}}
+      </ul>
+    </main>
+  </body>
+</html>
