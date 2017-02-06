@@ -4,18 +4,25 @@
     <meta charset="utf-8">
     <title>{{ title }}</title>
     <meta name="description" content="{{ description }}">
-    <meta name="author" content="Contentful">
+    <meta name="author" content="Morgan Stone">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/css/foundation.min.css">
   </head>
   <body>
-    <main>
-      {{{contents}}}
-      <ul>
-        {{#each data.entries}}
-        <li><a href="{{ _fileName }}"><img
-              alt=""
-              src="https:{{fields.images[0]file.url}}?w=200"></a></li>
-        {{/each}}
-      </ul>
+    <main class="row">
+      <div class="columns small-12">
+        {{{contents}}}
+        <ul>
+          {{#each data.entries}}
+          <li>
+            <a href="{{ _fileName }}">
+              <img
+                alt="{{ fields.name }}"
+                src="https:{{fields.featuredImage.fields.file.url}}?fit=thumb&f=top_left&h=200&w=200&image_format=jpg">
+            </a>
+          </li>
+          {{/each}}
+        </ul>
+      </div>
     </main>
   </body>
 </html>
