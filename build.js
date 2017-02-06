@@ -14,8 +14,8 @@ Metalsmith(__dirname)
   .source('src/pages')
   .destination('dist')
   .use(contentful({
-    space_id: 'sx4b7m2fosu5',
-    access_token: '65a7a0532ea85cafc91b69f0a79b28dd31af5cabfe11a4f93ea1284a8e5760c7'
+    space_id: process.env.SPACE_ID,
+    access_token: process.env.ACCESS_TOKEN
   }))
   .use(layouts({
     engine: 'handlebars',
