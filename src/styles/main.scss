@@ -1,0 +1,9 @@
+@import 'normalize-scss';
+
+
+@include normalize();
+
+body {
+	background-color: white;
+}
+

@@ -5,13 +5,17 @@ const assets = require('metalsmith-assets')
 const sass = require('metalsmith-sass')
 const markdown = require('metalsmith-markdown')
 const dataMarkdown = require('metalsmith-data-markdown')
-const contentful = require('contentful-metalsmith')
+const contentful = require('contentful-metalsmith');
+const browserSync = require('metalsmith-browser-sync');
+const watch = require('metalsmith-watch');
 
 const handlebars = require('handlebars')
 
+const sassModuleImporter = require('sass-module-importer');
+
 
 Metalsmith(__dirname)
-  .source('src/pages')
+  .source('src')
   .destination('dist')
   .use(contentful({
     space_id: process.env.SPACE_ID,
@@ -23,6 +27,8 @@ Metalsmith(__dirname)
     directory: 'src/layouts'
   }))
   .use(sass({
+    importer: sassModuleImporter(),
+    sourceMap: true,
     outputStyle: 'compressed'
   }))
   .use(markdown())
