@@ -7,20 +7,45 @@
     <meta name="author" content="Morgan Stone">
     <link rel="stylesheet" type="text/css" href="/styles/main.css">
   </head>
-  <body>
-    <main class="row" style="margin-top: 2rem">
-      <div class="columns small-12">
-        <h1>{{ data.fields.name }}</h1>
-        <ul>
-          {{#each data.fields.images}}
-            <li>
-              <img
-                alt="{{ fields.title }}"
-                src="https:{{fields.file.url}}?w=200">
-            </li>
-          {{/each}}
-        </ul>
+  <body class="portfolio-entry entry-{{data.fields.slug }}">
+    <main>
+      <div class=" portfolio-entry">
+        <div class="portfolio-section first">
+          <div class="content-wrapper">
+            <h1>{{ data.fields.name }}</h1>
+            
+          </div>
+        </div>
+        <div class="portfolio-section">
+          <div class="content-wrapper">
+            <div class="content" data-markdown>{{ data.fields.lead }}</div>
+            <div class="content" data-markdown>{{ data.fields.role }}</div>
+          </div>
+        </div>
+
+
+        {{#each data.fields.portfolioSections}}
+          <section class="portfolio-section">
+            <div class="content-wrapper">
+              <h2>{{fields.heading}}</h2>
+              <div class="content" data-markdown>{{fields.body}}</div>
+              <ul>
+                {{#each fields.media }}
+                <li>
+                  <img
+                    alt="{{ fields.title }}"
+                    src="https:{{fields.file.url}}?w=200">
+                </li>
+                {{/each}}
+            </ul>
+          </div>
+          </section>
+        {{/each}}
+
+        
       </div>
     </main>
+    <script src="https://use.typekit.net/ijc7duc.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
   </body>
 </html>

@@ -3,7 +3,91 @@
 
 @include normalize();
 
+
+
+$primary: #a1be63;
+$primary-light: lighten($primary, 10%);
+$primary-dark: darken($primary, 10%);
+
+$lightest: #eee;
+
+$light: darken($lightest, 10%);
+$dark: #111;
+
 body {
-	background-color: white;
+  color: $dark;
+	background-color: $lightest;
+	font-family: "ff-tisa-web-pro-1","ff-tisa-web-pro-2",serif;
+	font-style: normal;
+	font-weight: 400;
+	-webkit-font-smoothing: antialiased;
 }
 
+a {
+  color: $primary;
+  text-decoration: none;
+  &:hover, &:focus {
+    color: $primary-light;
+    text-decoration: none;
+  }
+}
+
+h1, h2, h3 {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5em;
+}
+
+
+.portfolio-entry {
+
+}
+
+
+.content-wrapper {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  p {
+    font-size: 1.5em;
+    line-height: 2;
+  }
+}
+
+.portfolio-section{
+  $padding: 2rem;
+  $padding-large: $padding * 4;
+  padding-top: $padding;
+  padding-bottom: $padding;
+  @media (min-width: 640px) {
+    padding-top: $padding-large;
+    padding-bottom: $padding-large;
+  }
+  &:not(.first) {
+    border-top: 1px solid $light;
+  }
+	
+
+	&.first {
+    padding-top: $padding-large;
+    padding-bottom: $padding-large;
+    text-align: center;
+		background: $dark;
+		color: white;
+    
+		
+	}
+	.content {
+		
+	}
+	
+}
+
+
+.entry-design-for-good {
+  .portfolio-section.first {
+    background: #2c2923 url("http://designforgoodbham.com/img/bg_posters.gif") bottom center repeat;
+  }
+}
