@@ -9,16 +9,16 @@
 
   </head>
   <body class="portfolio-entry entry-{{data.fields.slug }}">
-<!--     <div class="shape-background">
+    <div class="shape-background">
       <div class="shape shape1"></div>
       <div class="shape shape2"></div>
       <div class="shape shape3"></div>
       <div class="shape shape4"></div>
-    </div> -->
+    </div>
     
     <div class="site-wrapper">
       <header class="site-header headroom">
-        <nav class="site-nav" role="navigation">
+        <nav class="site-nav container" role="navigation">
           <h1 class="site-logo"><a href="/">Design by Morgan</a></h1>
           <ul class="menu">
             <li><a href="/">Porfolio</a></li>
@@ -30,31 +30,35 @@
       <main class="site-main">
         <div class=" portfolio-entry">
           <div class="portfolio-section first">
-            <div class="content-wrapper ">
-              <h1>{{ data.fields.name }}</h1>
-              <div class="content" data-markdown>{{ data.fields.lead }}</div>
-              <h2>My Role</h2>
-              <div class="content" data-markdown>{{ data.fields.role }}</div>
-              
+            <div class="container">
+              <div class="content-wrapper ">
+                <h1>{{ data.fields.name }}</h1>
+                <div class="content" data-markdown>{{ data.fields.lead }}</div>
+                <h2>My Role</h2>
+                <div class="content" data-markdown>{{ data.fields.role }}</div>
+                
+              </div>
             </div>
           </div>
 
 
           {{#each data.fields.portfolioSections}}
             <section class="portfolio-section">
-              <div class="content-wrapper">
-                <h2>{{fields.heading}}</h2>
-                <div class="content" data-markdown>{{fields.body}}</div>
-                <ul>
-                  {{#each fields.media }}
-                  <li>
-                    <img
-                      alt="{{ fields.title }}"
-                      src="https:{{fields.file.url}}?w=200">
-                  </li>
-                  {{/each}}
-              </ul>
-            </div>
+              <div class="container">
+                <div class="content-wrapper">
+                  <h2>{{fields.heading}}</h2>
+                  <div class="content" data-markdown>{{fields.body}}</div>
+                  <ul>
+                    {{#each fields.media }}
+                    <li>
+                      <img
+                        alt="{{ fields.title }}"
+                        src="https:{{fields.file.url}}?w=200">
+                    </li>
+                    {{/each}}
+                  </ul>
+                </div>
+              </div>
             </section>
           {{/each}}
 
