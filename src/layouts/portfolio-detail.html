@@ -5,20 +5,20 @@
     <title>{{ data.fields.name }}</title>
     <meta name="description" content="{{ description }}">
     <meta name="author" content="Morgan Stone">
-    <link rel="stylesheet" type="text/css" href="/styles/main.css">
+
   </head>
   <body class="portfolio-entry entry-{{data.fields.slug }}">
-    <div class="shape-background">
+<!--     <div class="shape-background">
       <div class="shape shape1"></div>
       <div class="shape shape2"></div>
       <div class="shape shape3"></div>
       <div class="shape shape4"></div>
-    </div>
+    </div> -->
     
     <div class="site-wrapper">
-      <header class="site-header">
-        <h1 class="site-logo"><a href="/">Design by Morgan</a></h1>
+      <header class="site-header headroom">
         <nav class="site-nav" role="navigation">
+          <h1 class="site-logo"><a href="/">Design by Morgan</a></h1>
           <ul class="menu">
             <li><a href="/">Porfolio</a></li>
             <li><a href="#">About</a></li>
@@ -62,7 +62,23 @@
       </main>
       <footer class="site-footer"></footer>
     </div>
+    <link rel="stylesheet" type="text/css" href="/styles/main.css">
+    <script src="/scripts/headroom.js"></script>
     <script src="https://use.typekit.net/ihp7loa.js"></script>
     <script>try{Typekit.load({ async: true });}catch(e){}</script>
+    <script type="text/javascript">
+      var myElement = document.querySelector("header");
+      // construct an instance of Headroom, passing the element
+      var headroom  = new Headroom(myElement, {
+        "tolerance": 5,
+        "classes": {
+          "initial": "animated",
+          "pinned": "slideDown",
+          "unpinned": "slideUp"
+        }
+      });
+      // initialise
+      headroom.init();
+    </script>
   </body>
 </html>
