@@ -138,7 +138,7 @@ p {
   transition: border-color 0.25s linear;
   border-top: 1px solid rgba($primary, 0);
   border-bottom: 1px solid rgba($black, 0);
-  @media (min-width: 640px) {
+  @media (min-width: 380px) {
     flex-flow: row wrap;
   }
 }
@@ -233,7 +233,7 @@ p {
 
   &.first > .container {
     padding-top: 6rem;
-    @media (min-width: 640px) {
+    @media (min-width: 380px) {
       padding-top: $padding-large;
     }
   }
