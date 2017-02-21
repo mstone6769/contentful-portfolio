@@ -3,11 +3,12 @@
 
 @include normalize();
 
-$white: #f4f4ec;
-$black: mix(#333, $white, 95%);
+
 $red: #eb3731; // //f75649
 $yellow: #f7d449;
 $blue: #608fdd;
+$white: #f4f4ec;
+$black: darken($blue, 55%);
 
 $primary: $red;
 $secondary: $yellow;
@@ -27,6 +28,9 @@ html {
   
   @media (min-width: 1000px) {
     font-size: 24px;
+  }
+  @media (min-width: 1200px) {
+    font-size: 28px;
   }
 }
 
@@ -57,65 +61,83 @@ a {
   }
 }
 
+p {    
+    padding-bottom: 1rem;
+  }
+
 
 .portfolio-entry {
 
 }
 
-//.site-wrapper {
-//  display: flex;
-//  flex-flow: column nowrap;
-//  position: relative;
-//}
-
 .site-header {
+  
+  background-color: transparent;
+  padding-top: 1rem;
+  @media (min-width: 640px) {
+    padding-top: 2rem;
+  }
+}
+
+
+
+.will-pin {
+  transition: transform 0.5s ease, background-color 0.5s linear, box-shadow 0.5s ease;
   position: fixed;
   z-index: 1;
   right: 0;
   left: 0;
   top: 0;
-  background-color: transparent;
-  padding: 0 1rem;
-  @media (min-width: 640px) {
-    padding: 0 2rem;
-  }
+}
 
-  transition: padding 0.5s ease, box-shadow 0.5s ease, background-color 0.5s ease;
 
-  &.headroom--top {
-    padding-top: 1rem;
+
+.not-at-top {
+  background-color: rgba($lightest, 0.95);
+  transform: translateY(-100%);
+  box-shadow: 0 1px 1px rgba(black, 0);
+  &.pinned {
+    transform: translateY(-1rem);
     @media (min-width: 640px) {
-      padding-top: 2rem;
-    } 
-  }
-  &.headroom--not-top {
-    background-color: rgba($lightest, 0.95);
-    box-shadow: 0 1px 1px rgba(black, 0.1);
-    &.slideUp {
-      box-shadow: 0 1px 1px rgba(black, 0);
+      transform: translateY(-2rem);
     }
   }
-  + * {
-    margin-top: 140px;
+
+  &.unpinned {
+    transform: translateY(-100%);
   }
 }
 
-.headroom--top > .site-nav {
+.at-top .site-nav {
   border-top-color: rgba($primary, 1);
+}
+
+.not-at-top .site-nav {
+  border-bottom-color: rgba($black, 0.15);
+}
+
+.padded {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  @media (min-width: 640px) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 }
 
 .container {
   margin-left: auto;
   margin-right: auto;
   max-width: 1200px;
+  
 }
 
 .site-nav {
-  
   display: flex;
   flex-flow: column wrap;
   transition: border-color 0.25s linear;
   border-top: 1px solid rgba($primary, 0);
+  border-bottom: 1px solid rgba($black, 0);
   @media (min-width: 640px) {
     flex-flow: row wrap;
   }
@@ -143,8 +165,14 @@ a {
   display: flex;
   flex-flow: row wrap;
   > li {
+    > a {
+      @media (min-width: 640px) {
+        padding-left: 1rem;
+      }
+    }
     &:not(:last-child) > a {
       padding-right: 1rem;
+
     }
     > a {
       display: block;
@@ -156,19 +184,10 @@ a {
 
 .content-wrapper {
   max-width: 30rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
   margin-left: auto;
   margin-right: auto;
-  @media (min-width: 640px) {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-  p {
-    font-size: 1em;
-    line-height: 1.5;
-    padding-bottom: 1rem;
-  }
+  line-height: 1.5;
+  
 }
 
 .centered {
@@ -180,33 +199,44 @@ a {
   }
 }
 
+.section-seperator {
+
+  &::before {
+    background-color: rgba($black, 0.15);
+    content: '';
+    width: 100%;
+    max-width: 1200px;
+    height: 1px;
+    margin-left: auto;
+    margin-right: auto;
+    display:block;
+    position: relative;
+
+  }
+}
+
 .portfolio-section{
   $padding: 2rem;
-  $padding-large: $padding*4;
+  $padding-large: $padding*2;
   
   position: relative;
   
   
-  &:not(.first) {
-    > .container {
-      padding-top: $padding;
-      padding-bottom: $padding;
-      @media (min-width: 640px) {
-        padding-top: $padding-large;
-        padding-bottom: $padding-large;
-      }
-      border-top: 1px solid rgba($black, 0.2);
+  > .container {
+    padding-top: $padding;
+    padding-bottom: $padding;
+    @media (min-width: 640px) {
+      padding-top: $padding-large;
+      padding-bottom: $padding-large;
     }
   }
 
-  &.first {
-    padding-top: 0;
-    padding-bottom: $padding;
+  &.first > .container {
+    padding-top: 6rem;
+    @media (min-width: 640px) {
+      padding-top: $padding-large;
+    }
   }
-	
-	.content {
-		
-	}
 	
 }
 
@@ -273,112 +303,42 @@ $related-shape-x: 60%;
 }
 
 
-//// Animations
 
+/// portfolio sections
 
-.animated {
-  -webkit-animation-duration: 0.5s;
-     -moz-animation-duration: 0.5s;
-       -o-animation-duration: 0.5s;
-          animation-duration: 0.5s;
-  -webkit-animation-fill-mode: both;
-     -moz-animation-fill-mode: both;
-       -o-animation-fill-mode: both;
-          animation-fill-mode: both;
-  will-change: transform, opacity;
+@mixin darkSection($bgColor: $dark) {
+  background-color: $bgColor;
+  color: $lightest;
 }
 
-
-@-webkit-keyframes slideDown {
-  0% {
-    -webkit-transform: translateY(-100%);
-  }
-
-  100% {
-    -webkit-transform: translateY(0);
-  }
+@mixin lightSection($bgColor: white) {
+  background-color: $bgColor;
 }
 
-@-moz-keyframes slideDown {
-  0% {
-    -moz-transform: translateY(-100%);
-  }
-
-  100% {
-    -moz-transform: translateY(0);
-  }
+img {
+  max-width: 100%;
 }
 
-@-o-keyframes slideDown {
-  0% {
-    -o-transform: translateY(-100%);
-  }
+.section-images {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
 
-  100% {
-    -o-transform: translateY(0);
+.entry-design-for-good {
+  .portfolio-section-research {
+    @include lightSection($secondary);
+    mix-blend-mode: multiply;
+  }
+  .portfolio-section-logo {
+    background-color: white;
+    text-align: center;
+    .section-heading {
+       display: none;
+    }
   }
 }
 
-@keyframes slideDown {
-  0% {
-    transform: translateY(-100%);
-  }
-
-  100% {
-    transform: translateY(0);
-  }
-}
-
-.animated.slideDown {
-  -webkit-animation-name: slideDown;
-  -moz-animation-name: slideDown;
-  -o-animation-name: slideDown;
-  animation-name: slideDown;
-}
-
-@-webkit-keyframes slideUp {
-  0% {
-    -webkit-transform: translateY(0);
-  }
-
-  100% {
-    -webkit-transform: translateY(-100%);
-  }
-}
-@-moz-keyframes slideUp {
-  0% {
-    -moz-transform: translateY(0);
-  }
-
-  100% {
-    -moz-transform: translateY(-100%);
-  }
-}
-@-o-keyframes slideUp {
-  0% {
-    -o-transform: translateY(0);
-  }
-
-  100% {
-    -o-transform: translateY(-100%);
-  }
-}
-@keyframes slideUp {
-  0% {
-    transform: translateY(0);
-  }
-
-  100% {
-    transform: translateY(-100%);
-  }
-}
-
-.animated.slideUp {
-  -webkit-animation-name: slideUp;
-  -moz-animation-name: slideUp;
-  -o-animation-name: slideUp;
-  animation-name: slideUp;
-}
 
 
 

@@ -18,52 +18,64 @@
     
     <div class="site-wrapper">
       <header class="site-header headroom">
-        <nav class="site-nav container" role="navigation">
-          <h1 class="site-logo"><a href="/">Design by Morgan</a></h1>
-          <ul class="menu">
-            <li><a href="/">Porfolio</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-          </ul>
-        </nav>  
+        <div class="container padded">
+          <nav class="site-nav" role="navigation">
+            <h1 class="site-logo"><a href="/">Design by Morgan</a></h1>
+            <ul class="menu">
+              <li><a href="/">Porfolio</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
       </header>
       <main class="site-main">
-        <div class=" portfolio-entry">
-          <div class="portfolio-section first">
-            <div class="container">
-              <div class="content-wrapper ">
-                <h1>{{ data.fields.name }}</h1>
-                <div class="content" data-markdown>{{ data.fields.lead }}</div>
-                <h2>My Role</h2>
-                <div class="content" data-markdown>{{ data.fields.role }}</div>
-                
-              </div>
+        <div id="introduction" class="portfolio-section padded first dark">
+          <div class="container">
+            <div class="content-wrapper ">
+              <h1 class="section-heading">{{ data.fields.name }}</h1>
+              <div class="content" data-markdown>{{ data.fields.lead }}</div>
+              <h2 class="section-heading">My Role</h2>
+              <div class="content" data-markdown>{{ data.fields.role }}</div>
+              <ul>
+                <li>
+                  <a href="#introduction">Introduction</a>
+                </li>
+                {{#each data.fields.portfolioSections}}
+                <li>
+                  <a href="#{{fields.slug}}">{{fields.heading}}</a>
+                </li>
+                {{/each}}
+              </ul>
+
             </div>
           </div>
 
-
-          {{#each data.fields.portfolioSections}}
-            <section class="portfolio-section">
-              <div class="container">
-                <div class="content-wrapper">
-                  <h2>{{fields.heading}}</h2>
-                  <div class="content" data-markdown>{{fields.body}}</div>
-                  <ul>
-                    {{#each fields.media }}
-                    <li>
-                      <img
-                        alt="{{ fields.title }}"
-                        src="https:{{fields.file.url}}?w=200">
-                    </li>
-                    {{/each}}
-                  </ul>
-                </div>
-              </div>
-            </section>
-          {{/each}}
-
-          
         </div>
+
+        {{#each data.fields.portfolioSections}}
+        <section id="{{fields.slug}}" class="portfolio-section padded section-seperator portfolio-section-{{fields.slug}}">
+          <div class="container">
+            <div class="content-wrapper">
+              <h2 class="section-heading">{{fields.heading}}</h2>
+              <div class="content" data-markdown>{{fields.body}}</div>
+              <ul class="section-images">
+                {{#each fields.media }}
+                <li>
+                    <img
+                      class="section-image"
+                      alt="{{ fields.title }}"
+                      src="https:{{fields.file.url}}?w=1200">
+                    <p class="image-caption">{{fields.description}}</p>
+                </li>
+                {{/each}}
+                </ul>
+              
+            </div>
+          </div>
+        </section>
+        {{/each}}
+
       </main>
       <footer class="site-footer"></footer>
     </div>
@@ -75,11 +87,19 @@
       var myElement = document.querySelector("header");
       // construct an instance of Headroom, passing the element
       var headroom  = new Headroom(myElement, {
-        "tolerance": 5,
-        "classes": {
-          "initial": "animated",
-          "pinned": "slideDown",
-          "unpinned": "slideUp"
+        offset : 100,
+        tolerance: 5,
+        classes: {
+          initial: 'will-pin',
+          pinned: 'pinned',
+          unpinned: 'unpinned',
+          top : 'at-top',
+          // when below offset
+          notTop : 'not-at-top',
+          // when at bottom of scoll area
+          bottom : 'at-bottom',
+          // when not at bottom of scroll area
+          notBottom : 'not-at-bottom'
         }
       });
       // initialise
